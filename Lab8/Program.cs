@@ -19,8 +19,9 @@ namespace Lab8
             Console.WriteLine("Enter a number of times at bat:");
 
             int BatTimes = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please enter batting score:");
+            Console.WriteLine("0 = out, 1 = single, 2 = double, 3 = tripple, 4 = homerun");
 
-            ValidateNums();
             //add validation where user can only enter 0-4 (in another method)
             //use an array to store the at-bat results for each player: 
             double[] AtBat = new double[BatTimes];
@@ -28,16 +29,15 @@ namespace Lab8
 
             {
                 Console.WriteLine($"Result for at-bat {i + 1}");
-                AtBat[i] = double.Parse(Console.ReadLine());
+                AtBat[i] = ValidateNums();
+
             }
-
-            double NumofValuesNotZero = 0;
             double Avg;
-
-            for (int i = 0; i < AtBat.Length; i++)
+            double NumofValuesNotZero = 0;
+            foreach (double Element in AtBat)
             {
-                NumofValuesNotZero = (AtBat[i] = 1); //fix me! Needs to be values that are not zero!
-
+                if (Element != 0) //fix me! Needs to be values that are not zero!
+                    NumofValuesNotZero = NumofValuesNotZero + 1;
             }
 
             Avg = NumofValuesNotZero / AtBat.Length;
@@ -66,23 +66,21 @@ namespace Lab8
             //Slugging % = sum of number of values from BatTimes array/number of AtBats
         }
 
-        public static int ValidateNums ()
+        public static double ValidateNums ()
         {
-            Console.WriteLine("Please enter batting score:");
-            Console.WriteLine("0 = out, 1 = single, 2 = double, 3 = tripple, 4 = homerun");
-            int Score = int.Parse(Console.ReadLine());
-
+            double Score = double.Parse(Console.ReadLine()); //reading valid doubles
+            double i = 0;
             // int Input = int.Parse(Console.ReadLine());
 
 
-            while ((Score != 0) && (Score != 1) && (Score != 2) && (Score != 3) && (Score != 4))
+            while ((Score != 0) && (Score != 1) && (Score != 2) && (Score != 3) && (Score != 4)) //validate user has entered 0-4
             {
 
                 Console.WriteLine("Please enter a valid score! Your options are 0, 1, 2, 3, or 4!");
-                Score = int.Parse(Console.ReadLine());
-                break;
+                Console.WriteLine($"Result for at-bat {i + 1}");
+                Score = double.Parse(Console.ReadLine()); //reading valid doubles
+                
             }
-            // after the while, you will have a valid number! 
             return Score;
         }
     }
