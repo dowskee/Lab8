@@ -49,7 +49,7 @@ namespace Lab8
 
             for (int i = 0; i < AtBat.Length; i++)
             {
-                Sum = Sum + AtBat[i]; //sum is sumation of the array
+                Sum = Sum + AtBat[i] / AtBat.Length; //sum is sumation of the array
 
             }
 
